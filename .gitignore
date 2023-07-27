@@ -1,0 +1,7 @@
+*.pem
+
+**/venv/
+
+**/scratch.md
+
+**/*.db

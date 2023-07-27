@@ -1,0 +1,49 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: ./07-cicd
+
+jobs:
+  ci-python-test:
+    name: "Test CI Python app"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "pypy3.9"
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run unittest on code
+        run: |
+          python -m unittest test_main.py
+
+  cd-python-deployment:
+    needs: ci-python-test
+    name: "Deploy Python App"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Run Ansible Playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: 07-cicd/playbook.yml
+          directory: ./
+          key: ${{ secrets.ANSIBLE_SERVER_PRIVATE_KEY }}
+          inventory: |
+            [webservers]
+            {Public IPv4 DNS} ansible_user=ubuntu

@@ -1,0 +1,36 @@
+---
+- name: Deploy
+  hosts:
+    - webservers
+  become: true
+  
+  tasks:    
+    - name: Copy python files onto Host
+      ansible.posix.synchronize:
+        src: ./app
+        dest: /home/ubuntu
+        rsync_opts:
+          - "--exclude=**/venv"
+          - "--chown=ubuntu:ubuntu"
+    # - name: Install pip on remote
+    #   ansible.builtin.apt:
+    #     name: python3-pip
+    # - name: Install Python Requirements
+    #   ansible.builtin.pip:
+    #     requirements: /home/ubuntu/python/requirements.txt
+    # - name: Run Python application in background
+    #   ansible.builtin.shell:
+    #     cmd: |
+    #       PYTHON_PID=$(lsof -t -i :5000)
+    #       if [ -z "$PYTHON_PID" ]
+    #       then
+    #         echo "Process has not started yet" 
+    #       else
+    #         echo "Killing process before starting again"
+    #         kill $PYTHON_PID
+    #       fi
+
+    #       python3 main.py
+    #     chdir: /home/ubuntu/python 
+    #   async: 10
+    #   poll: 0
