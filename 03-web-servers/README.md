@@ -25,7 +25,6 @@ Create a directory called `python` on your machine, from the `/home/ubuntu` dire
 $ mkdir python
 ```
 
-
 **Step 2:**
 Create/Edit a file called `main.py` and put the following text inside there:
 

@@ -26,7 +26,7 @@ Lets look at a command to examine network statistics on your machine: [ss](https
 $ ss -a
 ```
 
-This command will print out to the terminal a load of networking information on your machine. There are two main protocols we are interested in `tcp`, and `udp`. The `tcp` protocol is probably the most important protocol for our purposes because it is what one of the most popular protocol `http`, relies on. `udp` on the other has a lot of popular use cases. There is a wealth of sources that exhaustively explain the big differences between the two, but here is a short list.
+This command will print out to the terminal a load of networking information on your machine. There are two main protocols we are interested in `tcp`, and `udp`. The `tcp` protocol is probably the most important protocol for our purposes because it is what one of the most popular protocols `http`, relies on. `udp` on the other has a lot of popular use cases. There is a wealth of sources that exhaustively explain the big differences between the two, but here is a short list.
 
 **tcp**
 - Requires an established connection before transmitting data (dialing to another computer)

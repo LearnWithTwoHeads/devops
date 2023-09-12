@@ -1,4 +1,5 @@
 import sqlite3
+import mysql.connector
 
 from flask import Flask, jsonify, make_response
 from flask_cors import CORS
@@ -7,16 +8,19 @@ app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
+
+
 @app.route("/names")
 def names():
-    connection = sqlite3.connect("data.db")
+    connection = mysql.connector.connect(host="localhost", user="mysql", password="password", database="mysql")
     cur = connection.cursor()
 
-    names = cur.execute('SELECT * FROM names').fetchall()
+    cur.execute('SELECT * FROM names')
+    result = cur.fetchall()
 
     all_names = []
 
-    for name in names:
+    for name in result:
         all_names.append(name[0])
 
     response = make_response(
@@ -30,11 +34,11 @@ def names():
 
 @app.route("/names/<name>", methods=["PUT"])
 def add_name(name):
-    connection = sqlite3.connect("data.db")
+    connection = mysql.connector.connect(host="localhost", user="mysql", password="password", database="mysql")
 
     cur = connection.cursor()
 
-    cur.execute("INSERT INTO names (name) VALUES (?)",
+    cur.execute("INSERT INTO names (name) VALUES (%s)",
         (name,)
     )
 
@@ -52,9 +56,10 @@ def add_name(name):
     
 
 if __name__ == "__main__":
-    connection = sqlite3.connect("data.db")
+    connection = mysql.connector.connect(host="localhost", user="mysql", password="password", database="mysql")
 
+    cur = connection.cursor()
     with open("names.sql") as f:
-        connection.executescript(f.read())
+        cur.execute(f.read())
 
     app.run(host="0.0.0.0", port=8080)
