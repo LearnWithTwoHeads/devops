@@ -1,4 +1,5 @@
 ## File permissions
+
 This is probably one of the more important topics in Linux, mainly because a lot of other important topics branch out from it. Linux is particular about security, and the more you are security conscious when utilizing your Linux machine, the better off you are as a DevOps engineer. From the command line execute the following:
 
 ```bash
