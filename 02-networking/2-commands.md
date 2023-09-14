@@ -2,6 +2,51 @@
 
 ### ifconfig
 
+If you want to view all the active network interfaces on your device you can use the command `ifconfig`. This will show the network interfaces an the IP Addresses associated with them.
+
+```bash
+$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 9001
+        inet 192.168.5.138  netmask 255.255.255.0  broadcast 192.168.5.255
+        inet6 fe80::851:42ff:fe34:9a5  prefixlen 64  scopeid 0x20<link>
+        ether 0a:51:42:34:09:a5  txqueuelen 1000  (Ethernet)
+        RX packets 197562  bytes 257269299 (257.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 66339  bytes 8124861 (8.1 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 460  bytes 51496 (51.4 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 460  bytes 51496 (51.4 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
+In the above command we see that the `eth0` interface has the IP Address `192.168.5.138` associated with it, that is the private IP Address assigned to our EC2 instance.
+
+The lo (loopback) network interface has the IP Address `127.0.0.1` associated with it. This is a special IP Address that will loopback traffic to wherever it originated from. Essentially, whenever you see those numbers `127.0.0.1` the computer is referring to itself.
+
+### Ping
+
+Sometimes it is important to just know if two machines are able to communicate with each other with an IP Address or a DNS name. `ping` is a common command used for this purposes. If the `ping` command is successful it will resolve the DNS name (if it was provided) with an IP address and show bytes being transferred between the two machines.
+
+```bash
+$ ping www.google.com
+PING www.google.com (142.250.191.132) 56(84) bytes of data.
+64 bytes from ord38s29-in-f4.1e100.net (142.250.191.132): icmp_seq=1 ttl=114 time=16.2 ms
+64 bytes from ord38s29-in-f4.1e100.net (142.250.191.132): icmp_seq=2 ttl=114 time=16.3 ms
+64 bytes from ord38s29-in-f4.1e100.net (142.250.191.132): icmp_seq=3 ttl=114 time=16.3 ms
+64 bytes from ord38s29-in-f4.1e100.net (142.250.191.132): icmp_seq=4 ttl=114 time=16.4 ms
+```
+
+The `ping` command is successful if you see similar output from the command as above. More technically it will send out ICMP echo requests to the hosts specified, and is successful if that hosts sends back an ICMP echo reply response.
+
+You can read more about what ICMP is and how `ping` works [here](https://blog.cloudflare.com/the-most-exciting-ping-release/) and [here](https://www.cloudflare.com/learning/ddos/glossary/internet-control-message-protocol-icmp/)
+
+
 ### SS (socket statistics)
 
 Lets look at a command to examine network statistics on your machine: [ss](https://www.tecmint.com/ss-command-examples-in-linux/).
@@ -10,19 +55,7 @@ Lets look at a command to examine network statistics on your machine: [ss](https
 $ ss -a
 ```
 
-This command will print out to the terminal a load of networking information on your machine. There are two main protocols we are interested in `tcp`, and `udp`. The `tcp` protocol is probably the most important protocol for our purposes because it is what one of the most popular protocols `http`, relies on. `udp` on the other has a lot of popular use cases. There is a wealth of sources that exhaustively explain the big differences between the two, but here is a short list.
-
-**tcp**
-- Requires an established connection before transmitting data (dialing to another computer)
-- Can retransmit data
-- Delivery to destination is guaranteed
-- Slower than udp, but tradeoff is complete data deliver
-
-**udp**
-- No connection is needed
-- No data retransmitting
-- Delivery is not guaranteed
-- Faster that tcp, but at risk of data loss between machines
+This command will print out to the terminal a load of networking information on your machine. There are two main protocols we are interested in `TCP`, and `UDP`, which we described in the previous section.
 
 To filter for `tcp` you can type in the command:
 
@@ -56,15 +89,7 @@ $ ss -tp
 $ ss -r
 ```
 
-These are all snapshot in time outputs which sort of mimics how the `ps aux` command worked for processes. There is a way to continuously monitor the network and that is the command `tcpdump`. However, before we look at `tcpdump`, we will look at another command `ping` which is one of the most fundamental networking commands on Linux.
-
-### Ping
-
-Sometimes it is important to just know if two machines are able to communicate with each other. `ping` is a common command used for this purposes. If the `ping` command is successful it will resolve the DNS name with an IP address and show bytes being transferred between the two machines.
-
-```bash
-$ ping www.google.com
-```
+These are all snapshot in time outputs which sort of mimics how the `ps aux` command worked for processes. There is a way to continuously monitor the network and that is the command `tcpdump`.
 
 ### Tcpdump
 
