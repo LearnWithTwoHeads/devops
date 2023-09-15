@@ -43,7 +43,7 @@ What you are basically telling `nginx` to do is "hey intercept all requests that
 
 The flow looks like this:
 
-<img src="../static/images/reverse-proxy-action.png" width="90%" height="30%" />
+<img src="../static/images/reverse-proxy.png" width="90%" height="30%" />
 
 So now if you make the same `curl` request from your outside machine, you should see "Hello World!" print out to your screen. You might need to restart your `nginx` server, so it can pick up this new configuration:
 
@@ -51,12 +51,12 @@ So now if you make the same `curl` request from your outside machine, you should
 $ sudo nginx -s reload
 ```
 
-`nginx` is very cool because it acts as that security and central layer for requests that get into our system. It has configurable behavior for proxying these requests, adding metadata to the requests in the form of `http` headers, and some other security configurations.
+`nginx` is very cool because it acts as that security and central layer for requests that get into a machine. It has configurable behavior for proxying these requests, adding metadata to the requests in the form of `http` headers, and some other security configurations.
 
 The other cool thing about `nginx` is since it can be used as a reverse proxy, it can naturally be used as a [load balancer](https://www.f5.com/glossary/load-balancer#:~:text=A%20load%20balancer%20is%20a,users)%20and%20reliability%20of%20applications.) as well. Load balancers are a type of reverse proxy that distributes network traffic to multiple different servers.
 
 Why is that important?
 
-Well, if you can imagine an app like Twitter, very popular and heavily used by millions of users across the world, there is no way Twitter can support that kind of traffic on one server or our case ubuntu instance. There is a logical limit of how many concurrent requests a single machine can support, and that is based on the network card in the hardware + code runtime limits (Python runtime in our case) + CPU processing speed, and a lot of other factors.
+Well, if you can imagine an app like Twitter, very popular and heavily used by millions of users across the world, there is no way Twitter can support that kind of traffic on one machine or our case one Ubuntu instance. There is a logical limit of how many concurrent requests a single machine can support, and that is based on the network card in the hardware + code runtime limits (Python runtime in our case) + CPU processing speed, and a lot of other factors.
 
 Since all this traffic can not be served from one machine, it is important for Twitter to distribute this traffic across multiple machines to meet traffic demands, and this is where load balancers are particularly useful.

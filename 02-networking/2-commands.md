@@ -55,33 +55,33 @@ Lets look at a command to examine network statistics on your machine: [ss](https
 $ ss -a
 ```
 
-This command will print out to the terminal a load of networking information on your machine. There are two main protocols we are interested in `TCP`, and `UDP`, which we described in the previous section.
-
-To filter for `tcp` you can type in the command:
+This command will print out to the terminal a load of networking information on your machine. This is basically displaying all sockets on your machine. Like other Linux commands there usually exists filters within the flags you can use to filter the output down. As we have learned previously, there are two main protocols we are interested in for our purposes, `TCP` and `UDP`. Let us filter for all `TCP` sockets.
 
 ```bash
-$ ss -t
+$ ss -nta
 ```
 
-The output here on a fresh machine (EC2 instance) that isn't running anything should just be one line. This line is actually **very** important. It shows the details of the `ssh` connection that was made from your host machine to the EC2 instance. Lets go column by column:
+Going through the flag options one by one, `n` tells ss to resolve the port names into numbers. `22` is for ssh, `53` is for DNS, etc. `t` tells ss to only show tcp sockets. `a` tells ss to list all sockets regardless of their connection state (only tcp ones since we have specified `t` in combination).
+
+The output here on a fresh machine (EC2 instance) that isn't running anything should show one line that has the `ESTAB`. This line is actually **very** important. It shows the details of the `ssh` connection that was made from your host machine to the EC2 instance. Lets go column by column:
 
 `State`: This shows the state of the connection. A connection has a lifetime and goes through multiple states during that lifetime
-`Recv-Q`: Number of network packets recieved over this connection
-`Send-Q`: Number of network packets sent over this connection
+`Recv-Q`: Number of network packets queued to be recieved over this connection
+`Send-Q`: Number of network packets queued to be sent over this connection
 `Local Address:Port`: The address and port of the local machine this connection is initiated
 `Peer Address:Port`: The remote address and port by which this connection is initiated
 
 If there active processes on your machine you can actually get statistics on which process doing networking as well, using the command with flag:
 
 ```bash
-$ ss -p
+$ sudo ss -pan
 ```
 
 You can also combine these commands and declaritively get information for any filter you want.
 
 **Show PIDs for all tcp connections on my machine**
 ```bash
-$ ss -tp
+$ sudo ss -tpan
 ```
 
 **Show all TCP traffic and resolve host names from IP, along with PIDs**
@@ -91,7 +91,7 @@ $ ss -r
 
 These are all snapshot in time outputs which sort of mimics how the `ps aux` command worked for processes. There is a way to continuously monitor the network and that is the command `tcpdump`.
 
-### Tcpdump
+### `tcpdump`
 
 `tcpdump` is one of the more advanced commands when it comes to networking but very powerful. It allows you to continuously see the raw bytes that are entering or leaving a network interface. You can even filter to see the bytes entering a specific port. Let us try and run it (it needs to be ran as the `root` user).
 
@@ -111,4 +111,4 @@ What this command is doing is telling your machine to just capture 5 network pac
 
 In modern day technologies, `tcpdump` is usually considered a last ditch effort to understand at the byte level what is going on with the network on a specific machine. There are higher level tools that are used in modern day to examine network activity, but to know how to use `tcpdump` is always to your advantage.
 
-Currently, we do not have anything running on our machine that can receive or send web traffic. In most cases, there are applications that listen over a port (port 22 for ssh connections), and developers create these applications to listen on these ports. Lets look at how to run a application listening on a port to receive web traffic.
+Currently, we do not have anything running on our machine that can receive or send network traffic (besides the `ssh` active listener). In most cases, there are applications that listen over a port, and developers create these applications to listen on these ports. Lets look at how to run a application listening on a port to receive web traffic.

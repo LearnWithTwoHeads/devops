@@ -1,4 +1,3 @@
-import sqlite3
 import mysql.connector
 
 from flask import Flask, jsonify, make_response
@@ -8,11 +7,10 @@ app = Flask(__name__)
 
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-
-
 @app.route("/names")
 def names():
-    connection = mysql.connector.connect(host="localhost", user="mysql", password="password", database="mysql")
+    connection = mysql.connector.connect(host="localhost", user="mysql", password="password",  port=3306, database="mysql")
+
     cur = connection.cursor()
 
     cur.execute('SELECT * FROM names')
@@ -34,7 +32,7 @@ def names():
 
 @app.route("/names/<name>", methods=["PUT"])
 def add_name(name):
-    connection = mysql.connector.connect(host="localhost", user="mysql", password="password", database="mysql")
+    connection = mysql.connector.connect(host="localhost", user="mysql", password="password",  port=3306, database="mysql")
 
     cur = connection.cursor()
 
@@ -50,13 +48,13 @@ def add_name(name):
             "name": name
         })
     )
-    
+
     response.headers["Content-Type"] = "application/json"
     return response
-    
+
 
 if __name__ == "__main__":
-    connection = mysql.connector.connect(host="localhost", user="mysql", password="password", database="mysql")
+    connection = mysql.connector.connect(host="localhost", user="mysql", password="password",  port=3306, database="mysql")
 
     cur = connection.cursor()
     with open("names.sql") as f:

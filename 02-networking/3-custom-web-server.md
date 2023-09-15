@@ -2,7 +2,7 @@
 
 ### Nginx
 
-`nginx` is a general-purpose web server. It can be used for a variety of use cases, to serve static content back, as a reverse proxy/load-balancer. In a lot of cases, it is used as the front door for all web traffic coming into what ever application you are operating.
+`nginx` is a general-purpose web server. It can be used for a variety of use cases, to serve static content back to the requester, as a reverse proxy/load-balancer. In a lot of cases, it is used as the front door for all web traffic (HTTP-wise) coming into whatever server you are operating.
 
 At that level, you have a lot of control as far as where to route the traffic after it hits `nginx`, add special headers to each request that comes in, and the list goes on and on. For our purposes, we will get started by installing it, and then running it on our machine for clients to start making requets onto our machine.
 
@@ -20,7 +20,9 @@ After a few steps you should have `nginx` now installed on your machine. Now let
 $ sudo nginx
 ```
 
-The `nginx` command needs to be ran as the superuser, because it is trying to listen on a port 80 which is below 1024, there are more details [here](https://security.stackexchange.com/questions/202861/is-it-a-security-risk-to-run-master-process-of-nginx-as-root#:~:text=One%20reason%20to%20run%20nginx,not%20needed%20in%20your%20case.) as to why that is important.
+(**Note:** Usually `nginx` will be started on its own after it is installed, so if the above command gives weird output and fails, `nginx` is probably already running.)
+
+The `nginx` command needs to be ran as the superuser, because it is trying to listen on a port `80` which is below `1024`, there are more details [here](https://security.stackexchange.com/questions/202861/is-it-a-security-risk-to-run-master-process-of-nginx-as-root#:~:text=One%20reason%20to%20run%20nginx,not%20needed%20in%20your%20case.) as to why that is important. In short, ports 0-1023 are ports restricted to only the root user to access.
 
 If there was no output, that means your `nginx` server has successfully been started! Now lets see how we can reach our `nginx` from another computer.
 
@@ -30,9 +32,9 @@ Go to your host computer and type in the browser this: `http://{Public IPv4 DNS}
 
 We have successfully gotten our machine to serve back some content back to a requesting client. A huge step actually!
 
-In more techincal terms, `nginx` starts a web server that will listen on the `http` port which is the standard port number `80` on every machine. When you visit the `http://{Public IPv4 DNS}` without specifying a port number you are going to communicate with the default port which is `80`.
+In more techincal terms, `nginx` starts a web server that will listen on the `http` port which is the standard port number `80` (unless configured differently) on every machine. When you visit the `http://{Public IPv4 DNS}` without specifying a port number you are going to communicate with the default port which is `80`.
 
-So basically our machine wants to communicate with the machine hosted at `{Public IPv4 DNS}` on port 80. That makes sense, so then where does the web page actually come from?
+So basically our host machine wants to communicate with the machine hosted at `{Public IPv4 DNS}` on port 80. That makes sense, so then where does the web page actually come from?
 
 If you go back to your linux instance, type in the command:
 

@@ -1,6 +1,8 @@
 ## Python "Hello World"
 
-We will develop a Python web application and run it on the Linux server and see how we can interact with it from the outside world.
+We will develop a Python web application and run it on the Linux server and see how we can interact with it from the outside world. Just like how `nginx` bound to port `80` by default, our application will bind to a port `8080`.
+
+Let us look below!
 
 **Step 1:**
 Create a directory called `python` on your machine, from the `/home/ubuntu` directory.
@@ -42,7 +44,6 @@ $ pip install flask
 ```python
 from flask import Flask
 ```
-
 
 **Step 4:**
 Run the web application in the background.

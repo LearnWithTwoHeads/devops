@@ -19,7 +19,7 @@ http {
 }
 ```
 
-You can keep on defining these `server` blocks for the different hosts you want to reverse proxy to. By default, `nginx` will [round robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/#:~:text=What%20Is%20Round%2DRobin%20Load,to%20each%20server%20in%20turn.) the reverse proxying the different hosts. Basically, the first request into `nginx` will go to the first server you configure, second request will go to the second server you configure, so on and so forth.
+By default, `nginx` will [round robin](https://www.nginx.com/resources/glossary/round-robin-load-balancing/#:~:text=What%20Is%20Round%2DRobin%20Load,to%20each%20server%20in%20turn.) the requests it receives to the hosts specified in the `upstream backend` block. Basically, the first request into `nginx` will go to the first server you configure, second request will go to the second server you configure, so on and so forth. You can do some quick back of the envelope math to figure out what server the nth request will go to.
 
 There are actually a lot of different algorithms that you can use for load balancing requests to different servers. [These](https://www.nginx.com/faq/what-are-the-load-balancing-algorithms-supported/) are the different types of algorithms that you can use.
 
