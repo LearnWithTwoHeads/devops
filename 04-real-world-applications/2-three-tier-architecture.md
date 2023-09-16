@@ -45,6 +45,8 @@ So the files that should end up on your front end machine will be:
 - `app/js/app.js`
 - `app/index.html`
 
+In the `app/js/app.js`, you have to make sure you replace the IP Address with that of your backend server, which we will provision next.
+
 ### Backend Tier
 
 Create another EC2 instance for the backend application to run. Following the steps above we mentioned for security groups you should create another security group called `backend-group`, and give it inbound rules to allow traffic from anywhere IPv4 on port `22`, and anywhere IPv4 on port `8080`.
@@ -89,7 +91,55 @@ Of course {DATABASE_IPV4} will be whatever your IPv4 address is after you have p
 
 Create another EC2 instance for the database application to run. For this one create a security group called `database-group` and allow traffic from anywhere IPv4 on port `22` and port `3306` (where the database will be running).
 
-You have to provision MySQL on this machine as we have done before on the test Ubuntu machine. So follow those steps again to get MySQL up and running.
+You have to provision MySQL on this machine as we have done before on the test Ubuntu machine. We have done this before but there a couple tweaks that we need to make.
+
+**Step 1:** Allow MySQL to accept traffic from anywhere
+
+MySQL by default is allowed to accept traffic from origin `127.0.0.1` which is the loopback interface. However, since we are going to be accessing MySQL from another machine we should configure it to accept traffic from anywhere.
+
+```bash
+$ sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf
+```
+
+Edit the line where it says `bind-address`. The current value should be `127.0.0.1`, we are going to change that to `0.0.0.0`. So in the end the line should look like:
+
+```
+bind-address = 0.0.0.0
+```
+
+**Step 2:** Restart MySQL server
+
+After the changes to the `bind-address`, you need to restart the MySQL server, so it can pick up that change. To do this, type in the following command:
+
+```bash
+$ sudo /etc/init.d/mysql restart
+```
+
+This tells `systemd` of which we will learn about later to restart the MySQL server.
+
+**Step 3:** Create a user that is bound to all hosts
+
+Access the MySQL interface by doing:
+
+```bash
+$ sudo mysql
+```
+
+You should see the `mysql>` prompt. Now let us create the appropriate user, and grant them appropriate privileges:
+
+```sql
+mysql> CREATE USER 'mysql'@'%' IDENTIFIED BY 'password';
+```
+
+```sql
+mysql> GRANT ALL PRIVILEGES ON *.* TO 'mysql'@'%';
+```
+
+```sql
+mysql> FLUSH PRIVILEGES;
+```
+
+After these commands your MySQL server should be able to be accessed from outside the server it is provisioned on by the user we have created.
 
 ### Run all the things
 
@@ -107,11 +157,22 @@ SSH into your python machine and then run (under your `python` directory so you 
 $ python3 main.py &
 ```
 
+> Make sure that you change the `host` in your `main.py` file to be the host of the database server. You can use the IPv4 DNS, or the Public IPv4 Address values.
 
 **Step 3:** Run Frontend
 
 SSH into your front end machine and then run (under your `app` directory so you should `cd` into it first):
 
 ```bash
-$ python3 -m http.server
+$ python3 -m http.server &
 ```
+
+Now if you access the front end machine on port `8000`, you should see the same application for adding names. There should be no difference functionally. The difference logically is the separation of the machines.
+
+Here is what the flow looks like in the end:
+
+<img src="../static/images/three-tier-architecture.png" width="90%" height="30%" />
+
+## Security conscious
+
+In the security groups we have actually allowed traffic from anywhere to be valid. In practice, you want to only allow traffic into your machine from the necessary places. For instance, the backend security group should only allow traffic from the front end machines' IP address, and the database security group should only allow traffic from the backend machines' IP Address.

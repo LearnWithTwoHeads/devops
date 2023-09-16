@@ -101,7 +101,7 @@ mysql>
 You should see output similar to the above when running the `sudo mysql` command. This means there is a client connected to the server. Type in the following MySQL prompt.
 
 ```bash
-mysql> CREATE USER 'mysql'@'localhost' IDENTIFIED BY 'password'
+mysql> CREATE USER 'mysql'@'localhost' IDENTIFIED BY 'password';
 ```
 
 Once you hit enter, this should create a user called `mysql` with the password `password`.
