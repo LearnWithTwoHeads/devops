@@ -1,7 +1,8 @@
 ---
 - name: Deploy
   hosts:
-    - webservers
+    - webserver
+    - databaseserver
   become: true
   
   tasks:    

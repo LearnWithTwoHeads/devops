@@ -10,7 +10,7 @@ async function addName() {
   const name = document.getElementById("text-name-input");
 
   if (name.value !== "") {
-    const response = await fetch(`http://${IP_ADDRESS}/names/${name.value}`, {
+    const response = await fetch(`http://${IP_ADDRESS}:8080/names/${name.value}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +26,7 @@ async function addName() {
 
 async function getNames() {
   try {
-    const response = await fetch(`http://${IP_ADDRESS}/names`);
+    const response = await fetch(`http://${IP_ADDRESS}:8080/names`);
 
     const allNames = await response.json();
 

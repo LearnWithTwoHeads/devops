@@ -1,3 +1,3 @@
 CREATE TABLE IF NOT EXISTS names (
-    name TEXT NOT NULL PRIMARY KEY
+    name TEXT
 );
