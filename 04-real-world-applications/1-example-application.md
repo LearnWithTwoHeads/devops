@@ -43,7 +43,7 @@ You will need to copy these files into our EC2 Linux instance. Unfortunately, up
 
 > The `rsync` command is a pretty powerful one and you can read > more about it [here](https://www.hostinger.com/tutorials/how-to-use-rsync#:~:text=The%20Linux%20rsync%20command%20transfers,command%20to%20improve%20their%20productivity.). Basically, it will copy the > whole `app/` directory into the Linux instance. It does this over `ssh`.
 
-> Do not worry about this too much if you do not have the repository cloned locally. You will learn how to clone repositories in the `Git` lesson soon enough.
+> Do not worry about this too much if you do not have the repository cloned locally. You will learn how to clone repositories in the `Git` module soon enough.
 
 You can then `ssh` into you Linux instance, and edit the `app/js/app.js` file. Wherever it says `${IP_ADDRESS}` you want to remove that and put the IP Address or Public IPv4 DNS name of your Linux instance (this will be different for everybody). Now your application is fully configured and ready to be ran.
 
@@ -79,7 +79,7 @@ If this command failed, try updating the package index again.
 $ sudo apt update
 ```
 
-If it was successful, the MySQL server should be running on port `3306`. You can confirm that with the commands from the previous lesson.
+If it was successful, the MySQL server should be running on port `3306`. You can confirm that with the commands from the previous module.
 
 Now we have to create a user for MySQL that the python application can make use of.
 

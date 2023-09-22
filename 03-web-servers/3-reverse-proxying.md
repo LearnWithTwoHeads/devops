@@ -1,6 +1,6 @@
 ## Reverse Proxying
 
-We learned how to start `nginx` as a process in the last lesson so you should have `nginx` already installed on your machine. So let's run `nginx` again.
+We learned how to start `nginx` as a process in the last module so you should have `nginx` already installed on your machine. So let's run `nginx` again.
 
 ```bash
 $ sudo nginx

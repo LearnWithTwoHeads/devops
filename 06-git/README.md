@@ -1,4 +1,5 @@
 # Git
+![status](https://img.shields.io/badge/status-developing-orange)
 
 Git is a free and open source distributed version control system. What does that mean?
 

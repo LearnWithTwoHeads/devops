@@ -1,18 +1,9 @@
 ## Getting started with Linux
 
-Learning Linux one of the most important basis of any practical IT job, and DevOps engineering is no expection to that.
+There are many ways to get started with using Linux. We will be discussing three options here:
 
-What is the reason for that? Well, according to this [article](https://www.enterpriseappstoday.com/stats/linux-statistics.html#:~:text=Linux%20is%20used%20to%20power,the%20world's%20top%20web%20servers.&text=In%20fact%2C%2096.3%25%20account%20for,%25), Linux powers around 96.3% of the worlds top web servers. To put it simply, it is the king OS of the internet.
+First way is to install Linux directly on your host computer. This allows for the operating system software to interact directly with hardware, and allows for full control over the OS on your host. Downside to this approach is that it is more technically inclined, and can be a bit overkill for people who want to do simple things with Linux.
 
-However, why is Linux so popular when it comes to the internet and why is it needed for the DevOps profession?
+Second way is to install Linux in a virtual machine on your host computer. We will learn more about virtualization in a later module, but for purposes of this module it is basically a software level computer, or an OS running in an application. Virtual Machines allow for isolation from the host machine in a variety of ways. It is much simpler then installing Linux directly on a physical host, but they can in some cases be less efficient to run then directly on the host. So it all depends on the use case of your needs.
 
-This is what we will learn in this module, as well as actually spinning up a Linux machine for our own personal use.
-
-## Why Linux?
-In my opinion, the biggest reason why Linux is the preferred OS to any other OS when it comes to the internet is because of the open-source nature of the OS.
-
-You can actually find all of the source code for Linux on the web [here](https://github.com/torvalds/linux). The code being open-source allows for anybody to run it, build on top of it, and create a forks/variants of Linux. This has already been done many many times, as these variations are called Linux [distributions](https://en.wikipedia.org/wiki/List_of_Linux_distributions) or distros (for short).
-
-These distributions of Linux are sometimes optimized for certain things. For instance, Kali Linux is a distribution that comes with a lot of pre-installed tools to help users get started with penetration testing and ethical hacking. Another example is Alpine Linux, which is a super lightweight distribution without a lot of pre-installed software optimized for simple use cases, like users just wanting to run their own processes. Alpine is super popular in the microservices world (which we will learn about later).
-
-With OSs like Windows, and MacOS, these are closed source offerings and are actually pretty expensive to run. You can read more in depth about the differences between the three OSs [here](https://www.makeuseof.com/linux-vs-mac-vs-windows-operating-system/#:~:text=Unlike%20Windows%20and%20macOS%2C%20Linux,can%20install%20on%20older%20PCs.).
+The third way, and the way we will use for this module, is to basically "rent" a Linux machine. Cloud companies such as AWS, Google Cloud Platform, and Azure have ways for people to borrow compute from their infrastructure. Luckily, AWS has a free tier which we can get started with [here](https://aws.amazon.com/ec2/pricing/#:~:text=As%20part%20of%20the%20AWS,use%20only%20EC2%20Micro%20instances.). Renting a machine is perfect for learning since we just want to learn the basics of Linux, but obviously if you have more hefty demands in regards to how you want to use your machine, this may not be the best option. The reason being the free tier is obviously limited.

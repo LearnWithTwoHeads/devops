@@ -14,7 +14,7 @@ Let us look at how to separate out the applications to different tiers practical
 
 Just like we have created a machine in the past for our general Linux practice we will create a machine that will only run our front end code.
 
-You can follow the steps listed in the Linux lesson to create an EC2 instance. You can associate the same `*.pem` key for authentication that we used with our current instance.
+You can follow the steps listed in the Linux module to create an EC2 instance. You can associate the same `*.pem` key for authentication that we used with our current instance.
 
 At this point we can be a bit more specific when it comes to security and security grouping for instances (where to allow traffic from).
 

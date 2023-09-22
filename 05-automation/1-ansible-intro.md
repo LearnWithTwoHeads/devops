@@ -2,7 +2,7 @@
 
 [Ansible](https://www.ansible.com/) is at its heart a **very** general purpose automation tool. The word very is emphasized on purpose because people over the years have used Ansible for a variety of use cases. Use cases such as: infrastructure provisioning, infrastructure configuration, application configuration, running applications, service orchestration, etc.
 
-There does exists other tools that might be more suited for some of the above use cases, for instance [Terraform](https://www.terraform.io/) (which we will learn in a later lesson), which excels at infrastructure configuration, and provisioning in ways where it might be harder for Ansible. However, the general idea is that with Ansible, the sky is the limit for what you can do automation-wise.
+There does exists other tools that might be more suited for some of the above use cases, for instance [Terraform](https://www.terraform.io/) (which we will learn in a later module), which excels at infrastructure configuration, and provisioning in ways where it might be harder for Ansible. However, the general idea is that with Ansible, the sky is the limit for what you can do automation-wise.
 
 ### How does Ansible work?
 

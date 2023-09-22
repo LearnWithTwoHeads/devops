@@ -1,6 +1,6 @@
 ## Web Servers
 
-Web servers/apps are the bread and butter of applications and what they are comprised of. Again, just like in the last lesson you have worked with web servers most likely without knowing. If you've ever:
+Web servers/apps are the bread and butter of applications and what they are comprised of. Again, just like in the last module you have worked with web servers most likely without knowing. If you've ever:
 
 - Did a Google search
 - Bought an item from Amazon

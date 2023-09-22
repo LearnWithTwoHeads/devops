@@ -57,7 +57,7 @@ Protocols are nothing but a convention agreed upon by two devices that are tryin
 - Faster that tcp, but at risk of data loss between machines
 - DNS, DHCP, ARP are built upon UDP
 
-In most cases through our lessons we will be concerning ourselves with TCP, since we will see many scenarios of HTTP(s) communication.
+In most cases through our modules we will be concerning ourselves with TCP, since we will see many scenarios of HTTP(s) communication.
 
 ### Network Ports
 

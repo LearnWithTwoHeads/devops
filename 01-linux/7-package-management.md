@@ -31,7 +31,7 @@ $ tree
 └── uptime.txt
 ```
 
-There are the files that exist in my home directory, basically files that were created in the previous lesson.
+There are the files that exist in my home directory, basically files that were created in the previous module.
 
 You can also remove the same software installed onto the machine with `apt`, like so:
 

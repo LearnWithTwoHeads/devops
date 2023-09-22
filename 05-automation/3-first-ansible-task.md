@@ -4,7 +4,7 @@ In this section, we will experiment with running Ansible to execute some tasks. 
 
 ### Setup Ansible control node/machine
 
-To execute tasks with Ansible on other machines, we have to have a machine that has Ansible installed/configured to execute tasks against other machines. To do this we have to spin up another EC2 instance. This lesson also builds upon the previous lessons, so hopefully you still have your other 3 machines up and running for the front end, back end, and database.
+To execute tasks with Ansible on other machines, we have to have a machine that has Ansible installed/configured to execute tasks against other machines. To do this we have to spin up another EC2 instance. This module also builds upon the previous modules, so hopefully you still have your other 3 machines up and running for the front end, back end, and database.
 
 Let us walk through the steps:
 

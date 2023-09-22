@@ -13,6 +13,6 @@ Well, if you look at the list of what we did for MySQL to get it ready to use, t
 
 These are one of the few reasons why automation is important. You should leave it up to machines to do the heavy lifting for tasks that make sense. The MySQL provisioning is a fantastic example of something that can benefit from automation. We would not want a human doing that short 3 step list over and over, because humans are liable to make mistakes, and we want to minimize that as much as possible.
 
-There exists several tools, and practices to allow for seemless automation to take place. For the next two lessons we are going about some ubiquitous tools that help with that.
+There exists several tools, and practices to allow for seemless automation to take place. For the next two modules we are going about some ubiquitous tools that help with that.
 
 Lets dive into the first tool: `Ansible`.
