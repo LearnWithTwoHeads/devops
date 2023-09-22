@@ -40,6 +40,8 @@ You can see the YAML structure of the above file. Ignore the three `---` on top 
 
 What this playbook will do is synchronize the files from the `app` directory from the Ansible control machine onto the frontend. After you run this playbook, you should see the same files on the frontend machine, just without the `python` directory.
 
+Another thing to note here is that this task is making use of the `ansible.posix.synchronize` module which you can read about [here](https://docs.ansible.com/ansible/latest/collections/ansible/posix/synchronize_module.html). Once you get going on Ansible, there will be a lot of referencing documentation on modules and seeing how the modules are used. There are usually a lot of ways to provide configuration for modules to do exactly what you need them to do. Ansible also does a great job of providing some examples of module usage towards to bottom of every module documentation page.
+
 **Step 2:** Run the playbook
 
 To run any Ansible playbook, you will use the `ansible-playbook` command with some arguments.
