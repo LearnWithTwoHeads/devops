@@ -1,0 +1,73 @@
+---
+- name: Copy app files to frontend
+  hosts: frontend
+  become: true
+
+  tasks:
+    - name: Copy app files to frontend machine
+      ansible.posix.synchronize:
+        src: ./app
+        dest: /home/ubuntu
+        rsync_opts:
+          - "--exclude=**/python"
+          - "--chown=ubuntu:ubuntu"
+
+- name: Provision backend machine
+  hosts: backend
+  become: true
+
+  tasks:
+    - name: Copy python files from app directory
+      ansible.posix.synchronize:
+        src: ./app/python
+        dest: /home/ubuntu
+        rsync_opts:
+          - "--exclude=**/venv"
+          - "--chown=ubuntu:ubuntu"
+    - name: Update package index
+      ansible.builtin.apt:
+        update_cache: yes
+    - name: Install pip
+      ansible.builtin.apt:
+        name: python3-pip
+        state: present
+    - name: Install requirements with pip
+      ansible.builtin.shell:
+        chdir: /home/ubuntu/python
+        cmd: |
+          pip3 install -r requirements.txt
+
+- name: Set up database
+  hosts: database
+  become: true
+
+  tasks:
+    - name: Update package index
+      ansible.builtin.apt:
+        update_cache: yes
+    - name: Install MySQL
+      ansible.builtin.apt:
+        name: mysql-server
+        state: present
+    - name: Install pip
+      ansible.builtin.apt:
+        name: python3-pip
+        state: present
+    - name: Install dependencies for mysqlclient
+      ansible.builtin.apt:
+        name:
+          - python3-dev
+          - default-libmysqlclient-dev
+          - build-essential
+        state: present
+    - name: Install mysqlclient with pip
+      ansible.builtin.shell:
+        cmd: |
+          pip3 install mysqlclient
+    - name: Create database user and grant appropriate priveleges
+      community.mysql.mysql_user:
+        name: mysql
+        password: password
+        host: "%"
+        priv: "*.*:ALL"
+        state: present

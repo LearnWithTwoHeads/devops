@@ -247,4 +247,8 @@ $ ansible-playbook -i inventory -l database fe-be-db.yml
 
 This should work with no errors, but if it does not please read error messages, and feel free to reach out on any of our community resources for answers to your questions!
 
-We have successfully provisioned each machine to house the necessary files/packages it needs to run its specific function. But how about actually running the frontend and backend service. We will look into that in the next sectino.
+### Running services
+
+We will not go over how to use Ansible to actually run the whole application here in this module, but it is a very intriguing exercise. You can actually either use the `shell` module for the backend and the frontend to run the `python3` command as we have done before, or you can convert the backend and frontend into Linux [services](https://schh.medium.com/linux-services-with-systemd-d0252a27ebce#:~:text=In%20linux%2C%20a%20service%20(or%20daemon)%20is%20a%20script,based%20on%20the%20given%20request.). The latter one is more intriguing. Please try and attempt at least running the services on each machine (backend, and frontend. The database machine already has MySQL running.) with Ansible.
+
+If not you can ssh into the frontend and backend machines and edit the files to include the appropriate IP Addresses, as we have done before, and run each service, backend, and frontend. The end result should be the same of using the frontend to enter names in the text box and saving it to the database for retrieval.
