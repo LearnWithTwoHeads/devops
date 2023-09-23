@@ -53,10 +53,8 @@ You've come to the right place, and this course is dedicated to getting you from
 The modules are split up as such:
 1. **Linux OS**
 2. **Networking**
-3. **Load Balancers**
-4. **Automation Tool (Ansible)**
-5. **Git**
-6. **CI/CD**
-
-## Interview Questions
-1. Describe DevOps engineering in your words.
+3. **Web Servers**
+4. **Real World Applications**
+5. **Automation**
+6. **Git**
+7. **CI/CD**
