@@ -1,5 +1,5 @@
 # CI/CD
-![status](https://img.shields.io/badge/status-developing-orange)
+![status](https://img.shields.io/badge/status-started-yellow)
 
 CI/CD stands for Continuous Integration and Continuous Deployment. One of the most important part of the Software Development lifecycle. Basically, the two ideas are combined, they allow for a safe and streamlined delivery of software.
 
