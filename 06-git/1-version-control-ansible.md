@@ -60,9 +60,7 @@ No commits yet
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 	ansible.cfg
-	app/
 	inventory
-	playbook.yml
 	privkey.pem
 ```
 
@@ -129,13 +127,7 @@ You should see output similar to the following:
  9 files changed, 178 insertions(+)
  create mode 100644 .gitignore
  create mode 100644 ansible.cfg
- create mode 100644 app/index.html
- create mode 100644 app/js/app.js
- create mode 100644 app/python/main.py
- create mode 100644 app/python/names.sql
- create mode 100644 app/python/requirements.txt
  create mode 100644 inventory
- create mode 100644 playbook.yml
 ```
 
 This tells Git to commit and snapshot whatever was staged, with the commit message "initial commit". Now we have a unqiue identifier which we will see in the next step that can refer to our changes that we have made.
