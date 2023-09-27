@@ -11,4 +11,4 @@ The sections are:
 4. [Custom Web Server](3-custom-web-server.md)
 5. [What's Next?](conclusion.md)
 
-Here is a list of [Interview Questions](interview-questions.md) when it comes to Linux that you may see.
+Here is a list of [Interview Questions](interview-questions.md) when it comes to Networking that you may see.
