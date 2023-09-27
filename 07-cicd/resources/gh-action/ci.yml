@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./07-cicd
+    working-directory: ./app/python
 
 jobs:
   ci-python-test:
