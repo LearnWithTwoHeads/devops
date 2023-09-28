@@ -11,6 +11,14 @@
         rsync_opts:
           - "--exclude=**/python"
           - "--chown=ubuntu:ubuntu"
+    - name: Copy frontend service file
+      ansible.builtin.copy:
+        src: frontend.service
+        dest: /etc/systemd/system/frontend.service
+    - name: Restart frontend service
+      ansible.builtin.systemd:
+        name: frontend.service
+        state: restarted
 
 - name: Provision backend machine
   hosts: backend
@@ -36,6 +44,14 @@
         chdir: /home/ubuntu/python
         cmd: |
           pip3 install -r requirements.txt
+    - name: Copy backend service file
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service
+    - name: Restart backend service
+      ansible.builtin.service:
+        name: backend.service
+        state: restarted
 
 - name: Set up database
   hosts: database

@@ -14,6 +14,7 @@ The sections are:
 7. [Filtering and Redirects](6-filtering-redirects.md)
 8. [Package Management](7-package-management.md)
 9. [Processes](8-processes.md)
-10. [What's Next?](conclusion.md)
+10 [Services](9-services.md)
+11. [What's Next?](conclusion.md)
 
 Here is a list of [Interview Questions](interview-questions.md) when it comes to Linux that you may see.

@@ -11,4 +11,5 @@ The sections are:
 4. [First Ansible Task](3-first-ansible-task.md)
 5. [First Ansible Playbook](4-first-ansible-playbook.md)
 6. [Extending Ansible Playbook](5-extending-ansible-playbook.md)
-7. [What's Next?](conclusion.md)
+7. [Running Services](6-running-services.md)
+8. [What's Next?](conclusion.md)
