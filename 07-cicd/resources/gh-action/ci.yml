@@ -2,13 +2,9 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
   workflow_dispatch:
-
-defaults:
-  run:
-    working-directory: ./app/python
 
 jobs:
   ci-python-test:
@@ -24,9 +20,11 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          cd ./app/python
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run unittest on code
         run: |
+          cd ./app/python
           python -m unittest test_main.py

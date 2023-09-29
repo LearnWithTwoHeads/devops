@@ -1,4 +1,4 @@
-## Initializing GitHub Actions
+## Initializing GitHub Actions And CI
 
 Before you initialize any CI/CD workflow, you first want to think about the application you are setting it up for.
 
@@ -145,10 +145,6 @@ on:
   pull_request:
   workflow_dispatch:
 
-defaults:
-  run:
-    working-directory: ./app/python
-
 jobs:
   ci-python-test:
     name: "Test CI Python app"
@@ -163,11 +159,13 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          cd ./app/python
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run unittest on code
         run: |
+          cd ./app/python
           python -m unittest test_main.py
 ```
 
@@ -195,4 +193,10 @@ Once you open your pull request, if you have done everything correctly the Pull 
 
 <img src="../static/images/github-actions-initialize.png" width="90%" height="30%" />
 
-If you notice the section where it says `All checks have passed`. there was a CI workflow that ran! That workflow has the same name we have given to the YAML file that specified the workflow + job.
+If you notice the section where it says `All checks have passed`. there was a CI workflow that ran and passed!
+
+That workflow has the same name we have given to the YAML file that specified the workflow + job.
+
+**Step 5:** Merge the Pull Request
+
+Now that the checks have passed you can now merge in the Pull Request!

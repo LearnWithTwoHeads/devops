@@ -58,7 +58,11 @@ $ mv frontend.yml final-playbook.yml
 
 Edit the `final-playbook.yml` file to include all of the content you see in `ansible/final-playbook.yml` under this modules resources.
 
-**Step 3:** Stage, commit, and push branch to remote
+**Step 3:** Add both `frontend.service` and `backend.service` to this repo
+
+Under the `ansible/` directory under resources as well, you will see two files called `frontend.service` and `backend.service`. Please create files within your repo and place the respecitve content in them.
+
+**Step 4:** Stage, commit, and push branch to remote
 
 Lets do the dance once again to push this branch to the remote.
 
@@ -73,7 +77,7 @@ Commit the changes to create a snapshot.
 > Make sure to change the git configuration to be your name and email as we have done before.
 
 ```bash
-$ git commit -m "modify playbook to be final"
+$ git commit -m "modify playbook to be final and add systemd services"
 ```
 
 Push the changes to remote.
@@ -85,7 +89,7 @@ Push the changes to remote.
 $ git push -u origin final-playbook
 ```
 
-**Step 4:** Create Pull Request on GitHub with `final-playbook` branch and merge
+**Step 5:** Create Pull Request on GitHub with `final-playbook` branch and merge
 
 We have done this before in the previous section. Reference that piece of the section again, and merge the `final-playbook` changes into `master`.
 
@@ -109,7 +113,7 @@ Copy the private key back onto the Ansible control machine and give only the own
 $ chmod 400 privkey.pem
 ```
 
-**Step 2:** Run the Ansible playbook for (frontend, backend, database)
+**Step 3:** Run the Ansible playbook for (frontend, backend, database)
 
 Against the `frontend` group.
 

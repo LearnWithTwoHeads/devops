@@ -1,0 +1,14 @@
+[Unit]
+Description=Python web application to start
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/python
+ExecStart=/usr/bin/python3 /home/ubuntu/python/main.py
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Frontend application to server HTML
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/app
+ExecStart=/usr/bin/python3 -m http.server
+
+[Install]
+WantedBy=multi-user.target

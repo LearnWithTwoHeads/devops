@@ -1,14 +1,10 @@
-name: CI
+name: CI/CD
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
   workflow_dispatch:
-
-defaults:
-  run:
-    working-directory: ./07-cicd
 
 jobs:
   ci-python-test:
@@ -24,26 +20,36 @@ jobs:
 
       - name: Install Python dependencies
         run: |
+          cd ./app/python
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Run unittest on code
         run: |
+          cd ./app/python
           python -m unittest test_main.py
 
   cd-python-deployment:
-    needs: ci-python-test
-    name: "Deploy Python App"
+    name: "Deploy Three Tier Application"
     runs-on: ubuntu-latest
+    if: contains('refs/heads/master', github.ref)
+    needs: ci-python-test
     steps:
       - uses: actions/checkout@v3
       
-      - name: Run Ansible Playbook
-        uses: dawidd6/action-ansible-playbook@v2
-        with:
-          playbook: 07-cicd/playbook.yml
-          directory: ./
-          key: ${{ secrets.ANSIBLE_SERVER_PRIVATE_KEY }}
-          inventory: |
-            [webservers]
-            {Public IPv4 DNS} ansible_user=ubuntu
+      - name: Setup SSH
+        shell: bash
+        run: |
+          eval `ssh-agent -s`
+          mkdir -p /home/runner/.ssh
+          touch /home/runner/.ssh/privkey.pem
+          echo -e "${{secrets.SSH_KEY}}" > /home/runner/.ssh/privkey.pem
+          chmod 400 /home/runner/.ssh/privkey.pem
+      - name: Run Ansible playbook
+        shell: bash
+        run: |
+          service ssh status
+          sudo apt install ansible --yes
+          ansible-playbook -i inventory -l database final-playbook.yml
+          ansible-playbook -i inventory -l backend final-playbook.yml
+          ansible-playbook -i inventory -l frontend final-playbook.yml
