@@ -1,4 +1,4 @@
-## What's next?
+## What's Next?
 
 We have used Ansible to do some pretty cool things. The best part of this is that everything we need for remembering how a machine is provisioned, we can now reference from the Ansible playbooks.
 

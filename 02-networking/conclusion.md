@@ -1,4 +1,4 @@
-## What's next?
+## What's Next?
 
 From this module, we garnered the very basics of networking, and slight details of what it takes for two machines to network with each other.
 

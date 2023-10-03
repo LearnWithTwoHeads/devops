@@ -1,4 +1,4 @@
-## What's next?
+## What's Next?
 
 We have learned a lot in this module about Git. We have learned about how useful it can be as far as providing a nice developer experience around making edits to a codebase, referencing old snapshots of a codebase, and being able to download a codebase from anywhere once it exists on a Git host, GitHub in our case.
 

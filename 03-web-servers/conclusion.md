@@ -1,4 +1,4 @@
-## What's next?
+## What's Next?
 
 In this module, we basically ran a python web application that returns a simple "Hello World!" back to the requesting client. This unforunately is not a real world example only something that we've toyed with to learn the basics of reverse proxying and load balancing.
 
