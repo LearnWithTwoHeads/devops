@@ -24,7 +24,7 @@ def hello():
     return "Hello World!"
 
 if __name__ == "__main__":
-    # Important for the app to point to locahost here
+    # Important for the app to point to localhost here
     app.run(host="0.0.0.0", port=8080)
 ```
 

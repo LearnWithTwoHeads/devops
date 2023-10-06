@@ -72,6 +72,7 @@
     - name: Install dependencies for mysqlclient
       ansible.builtin.apt:
         name:
+          - pkg-config
           - python3-dev
           - default-libmysqlclient-dev
           - build-essential
