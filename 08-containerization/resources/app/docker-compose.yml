@@ -1,0 +1,28 @@
+version: '3'
+services:
+  frontend:
+    build: ./frontend
+    ports:
+    - "8000:8000"
+    environment:
+      BACKEND_URL: "http://backend:8080"
+  backend:
+    build: ./python
+    restart: on-failure
+    depends_on:
+      database:
+        condition: service_healthy
+    environment:
+      MYSQL_HOST: "database"
+  database:
+    image: mysql:8.0.32
+    healthcheck:
+      test: ["CMD-SHELL", 'mysql --database=$$MYSQL_DATABASE --password=$$MYSQL_ROOT_PASSWORD --execute="SELECT count(table_name) > 0 FROM information_schema.tables;" --skip-column-names -B']
+      interval: 30s
+      timeout: 10s
+      retries: 4
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+      MYSQL_PASSWORD: "password"
+      MYSQL_USER: "mysql"
+      MYSQL_DATABASE: "mysql"

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet">
+        <meta charset="UTF-8">
+        <title>Adding Names</title>
+    </head>
+    <body id="names-body">
+        <div style="text-align: center;">
+            <h1>Names</h1>
+            <div>
+                <h3 style="display: inline;">Type in a name</h3>
+		<form method="POST" action="/names" enctype="multipart/form-data">
+                    <input id="name" type="text" name="name" />
+		    <input style="display: inline;" type="submit" value="Add" />
+		</form>
+            </div>
+        </div>
+	<div>
+	    {% for name in names %}
+	    <h3>{{name}}</h3>
+	    {% endfor %}
+	</div>
+    </body>
+</html>
